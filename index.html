@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>KAISOUL NEWS</title>
+
+  <meta
+    name="description"
+    content="KAISOUL NEWS"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+
+<body>
+
+<header class="site-header">
+
+  <div class="header-inner">
+
+    <button
+      id="menuButton"
+      class="icon-button"
+    >
+      ☰
+    </button>
+
+    <a
+      href="/"
+      class="logo"
+      id="siteLogo"
+    >
+      KAISOUL NEWS
+    </a>
+
+    <button
+      id="searchButton"
+      class="icon-button"
+    >
+      🔍
+    </button>
+
+  </div>
+
+</header>
+
+
+<nav
+  id="categoryNav"
+  class="category-nav"
+></nav>
+
+
+<main>
+
+  <section
+    id="homeView"
+    class="home-view"
+  >
+
+    <div class="container">
+
+      <section>
+
+        <div class="section-title">
+          🔥 Tin nổi bật
+        </div>
+
+        <div
+          id="featuredGrid"
+          class="featured-grid"
+        ></div>
+
+      </section>
+
+
+      <section>
+
+        <div class="section-title">
+          📰 Tin mới
+        </div>
+
+        <div
+          id="newsGrid"
+          class="news-grid"
+        ></div>
+
+      </section>
+
+    </div>
+
+  </section>
+
+
+  <section
+    id="articleView"
+    class="article-view hidden"
+  >
+
+    <article
+      id="articleContainer"
+      class="article-container"
+    ></article>
+
+  </section>
+
+</main>
+
+
+<div
+  id="searchOverlay"
+  class="search-overlay hidden"
+>
+
+  <div class="search-box">
+
+    <button
+      id="closeSearch"
+      class="close-search"
+    >
+      ×
+    </button>
+
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="Tìm kiếm tin tức..."
+    >
+
+    <button
+      id="doSearch"
+      class="primary-button"
+    >
+      Tìm kiếm
+    </button>
+
+  </div>
+
+</div>
+
+
+<footer>
+
+  <div id="footerText">
+    © KAISOUL NEWS
+  </div>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
