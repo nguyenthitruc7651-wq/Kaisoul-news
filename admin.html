@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>KAISOUL NEWS ADMIN</title>
+
+  <link
+    rel="stylesheet"
+    href="admin.css"
+  >
+</head>
+
+<body>
+
+<div id="loginScreen" class="screen">
+
+  <div class="login-card">
+
+    <div class="brand">
+      KAISOUL NEWS
+    </div>
+
+    <div class="admin-label">
+      ADMIN PANEL
+    </div>
+
+    <form id="loginForm">
+
+      <label>
+        Tên đăng nhập
+      </label>
+
+      <input
+        id="username"
+        type="text"
+        autocomplete="username"
+        placeholder="Tên đăng nhập"
+        required
+      >
+
+      <label>
+        Mật khẩu
+      </label>
+
+      <input
+        id="password"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Mật khẩu"
+        required
+      >
+
+      <button
+        class="primary-button"
+        type="submit"
+      >
+        ĐĂNG NHẬP
+      </button>
+
+      <div
+        id="loginMessage"
+        class="message"
+      ></div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<div
+  id="adminApp"
+  class="admin-app hidden"
+>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-brand">
+      KAISOUL NEWS
+      <small>ADMIN</small>
+    </div>
+
+    <nav>
+
+      <button
+        class="nav-button active"
+        data-page="dashboard"
+      >
+        📊 Dashboard
+      </button>
+
+      <button
+        class="nav-button"
+        data-page="articles"
+      >
+        📰 Bài viết
+      </button>
+
+      <button
+        class="nav-button"
+        data-page="editor"
+      >
+        ✍️ Soạn bài
+      </button>
+
+      <button
+        class="nav-button"
+        data-page="media"
+      >
+        🖼️ Media
+      </button>
+
+      <button
+        class="nav-button"
+        data-page="categories"
+      >
+        📂 Chuyên mục
+      </button>
+
+      <button
+        class="nav-button"
+        data-page="admins"
+      >
+        👥 Quản trị viên
+      </button>
+
+      <button
+        class="nav-button"
+        data-page="theme"
+      >
+        🎨 Giao diện
+      </button>
+
+    </nav>
+
+    <button
+      id="logoutButton"
+      class="logout-button"
+    >
+      🚪 Đăng xuất
+    </button>
+
+  </aside>
+
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <button
+        id="menuButton"
+        class="mobile-menu"
+      >
+        ☰
+      </button>
+
+      <div>
+        <strong id="pageTitle">
+          Dashboard
+        </strong>
+      </div>
+
+      <div
+        id="adminIdentity"
+        class="identity"
+      ></div>
+
+    </header>
+
+
+    <!-- DASHBOARD -->
+
+    <section
+      id="page-dashboard"
+      class="page active-page"
+    >
+
+      <div class="page-heading">
+        <h1>Dashboard</h1>
+        <p>Tổng quan KAISOUL NEWS</p>
+      </div>
+
+      <div class="stats">
+
+        <div class="stat">
+          <span>Bài viết</span>
+          <strong id="statArticles">0</strong>
+        </div>
+
+        <div class="stat">
+          <span>Đã đăng</span>
+          <strong id="statPublished">0</strong>
+        </div>
+
+        <div class="stat">
+          <span>Bản nháp</span>
+          <strong id="statDrafts">0</strong>
+        </div>
+
+        <div class="stat">
+          <span>Lượt xem</span>
+          <strong id="statViews">0</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ARTICLES -->
+
+    <section
+      id="page-articles"
+      class="page"
+    >
+
+      <div class="page-heading">
+
+        <div>
+          <h1>Bài viết</h1>
+          <p>Quản lý toàn bộ bài viết.</p>
+        </div>
+
+        <button
+          id="newArticleButton"
+          class="primary-button"
+        >
+          + Tạo bài viết
+        </button>
+
+      </div>
+
+      <div
+        id="articlesList"
+        class="articles-list"
+      ></div>
+
+    </section>
+
+
+    <!-- EDITOR -->
+
+    <section
+      id="page-editor"
+      class="page"
+    >
+
+      <div class="page-heading">
+
+        <div>
+          <h1 id="editorTitle">
+            Soạn bài
+          </h1>
+
+          <p>
+            Kéo, thu phóng và sắp xếp nội dung.
+          </p>
+        </div>
+
+        <div class="editor-actions">
+
+          <button
+            id="previewButton"
+            class="secondary-button"
+          >
+            👁️ Xem trước
+          </button>
+
+          <button
+            id="saveDraftButton"
+            class="secondary-button"
+          >
+            💾 Lưu nháp
+          </button>
+
+          <button
+            id="publishButton"
+            class="primary-button"
+          >
+            🚀 Đăng
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="editor-layout">
+
+        <div class="editor-controls">
+
+          <label>
+            Tiêu đề
+          </label>
+
+          <input
+            id="articleTitle"
+            type="text"
+            placeholder="Nhập tiêu đề..."
+          >
+
+          <label>
+            Mô tả ngắn
+          </label>
+
+          <textarea
+            id="articleExcerpt"
+            rows="4"
+            placeholder="Mô tả..."
+          ></textarea>
+
+          <label>
+            Chuyên mục
+          </label>
+
+          <select id="articleCategory"></select>
+
+          <label>
+            Tác giả
+          </label>
+
+          <input
+            id="articleAuthor"
+            type="text"
+          >
+
+          <label>
+            Tags
+          </label>
+
+          <input
+            id="articleTags"
+            type="text"
+            placeholder="công nghệ, AI, Việt Nam"
+          >
+
+
+          <div class="toolbar">
+
+            <button
+              id="addText"
+              type="button"
+            >
+              🔤 Chữ
+            </button>
+
+            <button
+              id="addHeading"
+              type="button"
+            >
+              H Tiêu đề
+            </button>
+
+            <button
+              id="addImage"
+              type="button"
+            >
+              🖼️ Ảnh
+            </button>
+
+            <button
+              id="addQuote"
+              type="button"
+            >
+              ❝ Trích dẫn
+            </button>
+
+          </div>
+
+
+          <div
+            id="selectedControls"
+            class="selected-controls"
+          >
+
+            <h3>Block đang chọn</h3>
+
+            <label>
+              Cỡ chữ
+            </label>
+
+            <input
+              id="fontSizeControl"
+              type="number"
+              min="8"
+              max="120"
+              value="18"
+            >
+
+            <label>
+              Độ rộng %
+            </label>
+
+            <input
+              id="widthControl"
+              type="number"
+              min="1"
+              max="100"
+              value="40"
+            >
+
+            <label>
+              Chiều cao %
+            </label>
+
+            <input
+              id="heightControl"
+              type="number"
+              min="1"
+              max="100"
+              value="20"
+            >
+
+            <button
+              id="deleteBlock"
+              class="danger-button"
+              type="button"
+            >
+              🗑️ Xóa block
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="canvas-wrapper">
+
+          <div
+            id="editorCanvas"
+            class="editor-canvas"
+          ></div>
+
+          <div class="touch-help">
+            👆 Kéo block · 🤏 Zoom ảnh · Chạm để chọn
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MEDIA -->
+
+    <section
+      id="page-media"
+      class="page"
+    >
+
+      <div class="page-heading">
+        <h1>Media</h1>
+        <p>Quản lý hình ảnh.</p>
+      </div>
+
+      <div class="upload-box">
+
+        <input
+          id="mediaInput"
+          type="file"
+          accept="image/jpeg,image/png,image/webp,image/gif"
+        >
+
+        <button
+          id="uploadButton"
+          class="primary-button"
+        >
+          Upload ảnh
+        </button>
+
+      </div>
+
+      <div
+        id="mediaGrid"
+        class="media-grid"
+      ></div>
+
+    </section>
+
+
+    <!-- CATEGORIES -->
+
+    <section
+      id="page-categories"
+      class="page"
+    >
+
+      <div class="page-heading">
+        <h1>Chuyên mục</h1>
+        <p>Quản lý chuyên mục tin tức.</p>
+      </div>
+
+      <div class="category-create">
+
+        <input
+          id="newCategoryName"
+          placeholder="Tên chuyên mục"
+        >
+
+        <button
+          id="createCategory"
+          class="primary-button"
+        >
+          + Thêm
+        </button>
+
+      </div>
+
+      <div
+        id="categoriesList"
+        class="categories-list"
+      ></div>
+
+    </section>
+
+
+    <!-- ADMINS -->
+
+    <section
+      id="page-admins"
+      class="page"
+    >
+
+      <div class="page-heading">
+        <h1>Quản trị viên</h1>
+        <p>Chỉ Super Admin mới quản lý được Admin.</p>
+      </div>
+
+      <div class="admin-create">
+
+        <input
+          id="newAdminUsername"
+          placeholder="Tên Admin"
+        >
+
+        <input
+          id="newAdminPassword"
+          type="password"
+          placeholder="Mật khẩu"
+        >
+
+        <select id="newAdminRole">
+          <option value="editor">
+            Editor
+          </option>
+
+          <option value="super_admin">
+            Super Admin
+          </option>
+        </select>
+
+        <button
+          id="createAdmin"
+          class="primary-button"
+        >
+          + Tạo Admin
+        </button>
+
+      </div>
+
+      <div
+        id="adminsList"
+        class="admins-list"
+      ></div>
+
+    </section>
+
+
+    <!-- THEME -->
+
+    <section
+      id="page-theme"
+      class="page"
+    >
+
+      <div class="page-heading">
+        <h1>Giao diện</h1>
+        <p>Chỉnh cấu hình giao diện KAISOUL NEWS.</p>
+      </div>
+
+      <div class="theme-form">
+
+        <label>
+          Tên website
+        </label>
+
+        <input id="themeSiteName">
+
+        <label>
+          Mô tả
+        </label>
+
+        <input id="themeDescription">
+
+        <label>
+          Logo
+        </label>
+
+        <input id="themeLogo">
+
+        <label>
+          Màu chính
+        </label>
+
+        <input
+          id="themePrimary"
+          type="color"
+        >
+
+        <label>
+          Màu nhấn
+        </label>
+
+        <input
+          id="themeAccent"
+          type="color"
+        >
+
+        <label>
+          Footer
+        </label>
+
+        <input id="themeFooter">
+
+        <button
+          id="saveTheme"
+          class="primary-button"
+        >
+          💾 Lưu giao diện
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script src="admin.js"></script>
+
+</body>
+</html>
